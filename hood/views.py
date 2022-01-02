@@ -5,4 +5,4 @@ from django.shortcuts import render
 
 
 def IndexView(request):
-    return HttpResponse("Hello, world. You're at the hood index.")
+    return render(request, 'index.html')

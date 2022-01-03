@@ -20,6 +20,26 @@
               </div>
               <img src="https://source.unsplash.com/random" height="100px" class="card-img-bottom" alt="...">
             </div>
+            <hr>
+            {% for business in Businesses %}
+              <div class="card" style="width: 18rem;">              
+                <div class="card-body">
+                  <h5 class="card-title">{{ business.name }}</h5>
+                  <p class="card-text">{{business.description}}</p>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Contact Info
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Phone: 0700 123 123</a></li>
+                      <li><a class="dropdown-item" href="#">Email: {{ business.email}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <img src="{{business.image.url}}" height="100px" class="card-img-bottom" alt="...">
+              </div>
+
+            {% endfor %}
         </div>
         <div class="col-md-5">
             <h1>Posts</h1>

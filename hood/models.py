@@ -10,7 +10,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User,primary_key=True,verbose_name='user',related_name='profile', on_delete=models.CASCADE)
+    #user = models.OneToOneField(User,primary_key=True,verbose_name='user',related_name='profile', on_delete=models.CASCADE)
     username = models.CharField(max_length=50,blank=True,null=True)
     bio = models.TextField(max_length=500,blank=True,null=True)
     birth_date = models.DateField(blank=True,null=True)
@@ -66,8 +66,8 @@ class Business(models.Model):
   image = CloudinaryField('image')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
-  user = models.ForeignKey(User,on_delete=CASCADE)
+  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business', null=True, blank=True)
+  #user = models.ForeignKey(User,on_delete=CASCADE)
   email = models.EmailField()
 
   def create_business(self):

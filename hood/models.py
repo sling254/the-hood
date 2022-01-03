@@ -9,32 +9,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
-
-class Business(models.Model):
-  name =models.CharField(max_length=60)
-  description = models.TextField()
-  image = CloudinaryField('image')
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
-  #neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
-  #user = models.ForeignKey(User,on_delete=CASCADE)
-  email = models.EmailField()
-
-  def create_business(self):
-    self.save()
-
-  def delete_business(self):
-    self.delete()
-
-  @classmethod
-  def search_businesses(cls, business):
-    return cls.objects.filter(name__icontains=business).all()
-
-  def __str__(self):
-    return self.name
-
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User,primary_key=True,verbose_name='user',related_name='profile', on_delete=models.CASCADE)
     username = models.CharField(max_length=50,blank=True,null=True)
@@ -57,3 +31,57 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+
+class NeighborHood(models.Model):
+  name = models.CharField(max_length=60)
+  location = models.CharField(max_length=60)
+  admin = models.ForeignKey(UserProfile,on_delete=CASCADE,related_name='administrator')
+  description = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  population = models.IntegerField(null=True,blank = True)
+  police_contact = models.IntegerField(null=True,blank = True)
+  hospital_contact = models.IntegerField(null=True,blank = True)
+  image = CloudinaryField('image')
+
+  def create_neighborhood(self):
+    self.save()
+
+  def delete_neighborhood(self):
+    self.delete()
+
+  @classmethod
+  def find_neighborhood(cls, neighborhood_id):
+    return cls.objects.filter(id=neighborhood_id)
+  
+  def __str__(self):
+    return self.name
+
+
+class Business(models.Model):
+  name =models.CharField(max_length=60)
+  description = models.TextField()
+  image = CloudinaryField('image')
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
+  user = models.ForeignKey(User,on_delete=CASCADE)
+  email = models.EmailField()
+
+  def create_business(self):
+    self.save()
+
+  def delete_business(self):
+    self.delete()
+
+  @classmethod
+  def search_businesses(cls, business):
+    return cls.objects.filter(name__icontains=business).all()
+
+  def __str__(self):
+    return self.name
+
+
+

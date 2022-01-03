@@ -13,6 +13,5 @@ def IndexView(request):
         'Businesses': Businesses,
         
     }
-    print(Businesses)
     
     return render(request, 'index.html',context)

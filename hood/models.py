@@ -33,7 +33,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 
-""" class NeighborHood(models.Model):
+class NeighborHood(models.Model):
   name = models.CharField(max_length=60)
   location = models.CharField(max_length=60)
   admin = models.ForeignKey(UserProfile,on_delete=CASCADE,related_name='administrator')
@@ -56,7 +56,7 @@ def save_user_profile(sender, instance, **kwargs):
     return cls.objects.filter(id=neighborhood_id)
   
   def __str__(self):
-    return self.name """
+    return self.name
 
 
 """ class Business(models.Model):

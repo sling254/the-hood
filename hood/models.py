@@ -3,18 +3,16 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-import datetime as dt
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE,SET_NULL
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
 class UserProfile(models.Model):
-    #user = models.OneToOneField(User,primary_key=True,verbose_name='user',related_name='profile', on_delete=models.CASCADE)
-    username = models.CharField(max_length=50,blank=True,null=True)
+    user = models.OneToOneField(User,primary_key=True,verbose_name='user',related_name='profile', on_delete=models.CASCADE)
     bio = models.TextField(max_length=500,blank=True,null=True)
     birth_date = models.DateField(blank=True,null=True)
-    neighborhood  = models.CharField(max_length=50,blank=True,null=True)
+    neighborhood = models.ForeignKey('NeighborHood', on_delete=SET_NULL,null=True, related_name='people', blank=True)
     picture = CloudinaryField('image',default='static/usericon.png',blank=True)
     email = models.EmailField(max_length=50,blank=True,null=True)
 
@@ -34,7 +32,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 
-class NeighborHood(models.Model):
+
+""" class NeighborHood(models.Model):
   name = models.CharField(max_length=60)
   location = models.CharField(max_length=60)
   admin = models.ForeignKey(UserProfile,on_delete=CASCADE,related_name='administrator')
@@ -57,10 +56,10 @@ class NeighborHood(models.Model):
     return cls.objects.filter(id=neighborhood_id)
   
   def __str__(self):
-    return self.name
+    return self.name """
 
 
-class Business(models.Model):
+""" class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()
   image = CloudinaryField('image')
@@ -85,3 +84,4 @@ class Business(models.Model):
 
 
 
+ """

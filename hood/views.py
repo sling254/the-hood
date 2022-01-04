@@ -18,7 +18,9 @@ def IndexView(request):
     
     return render(request, 'index.html',context)
 
+def OnboardingView(request):
 
+    return render(request, 'onboarding.html')
 
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):

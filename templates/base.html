@@ -67,8 +67,10 @@
         <div class="carousel-item active">
           <img src="{% static 'img/back1.jpg' %}" class="d-block w-100" height="200px" alt="...">
           <div class="carousel-caption d-none d-md-block">
-              <h2>{{ user.profile.neighborhood.name }}</h2>
-              <p>{{ user.profile.neighborhood.description}}</p>
+              <h1>{{ user.profile.neighborhood.name }}</h1>
+              <h5 >{{ user.profile.neighborhood.description}}</h5>
+              <small><p>With a Population of : {{ user.profile.neighborhood.population}}</p></small>
+
           </div>
         </div>
       </div>

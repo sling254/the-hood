@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from .models import UserProfile
+from .models import UserProfile, Business
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
@@ -12,8 +13,10 @@ from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
 
 def IndexView(request):
+    Businesses = Business.objects.all()
     
     context={
+        "Businesses": Businesses
     }
     
     return render(request, 'index.html',context)

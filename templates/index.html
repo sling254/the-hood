@@ -31,7 +31,7 @@
                       Contact Info
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#">Phone: 0700 123 123</a></li>
+                      <li><a class="dropdown-item" href="#">Phone: {{ business.phone_number }}</a></li>
                       <li><a class="dropdown-item" href="#">Email: {{ business.email}}</a></li>
                     </ul>
                   </div>
@@ -70,13 +70,13 @@
                   <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <p>
-                            <strong>Address:</strong>
+                            <strong>Address:</strong>{{ user.profile.neighborhood.hospital_address}}
                             <br>
                             <br>
                             <strong>Phone:</strong>{{ user.profile.neighborhood.hospital_contact}}
                             <br>
                             <br>
-                            <strong>Email:</strong>
+                            <strong>Email:</strong>{{ user.profile.neighborhood.hospital_email }}
                         </p>
                     </div>
                   </div>
@@ -90,13 +90,13 @@
                   <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <p>
-                            <strong>Address:</strong>
+                            <strong>Address:</strong> {{ user.profile.neighborhood.police_address }}
                             <br>
                             <br>
-                            <strong>Phone:</strong>
+                            <strong>Phone:</strong> {{ user.profile.neighborhood.police_contact }}
                             <br>
                             <br>
-                            <strong>Email:</strong>
+                            <strong>Email:</strong> {{ user.profile.neighborhood.police_email }}
                         </p>
                     </div>
                   </div>

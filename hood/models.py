@@ -40,9 +40,13 @@ class NeighborHood(models.Model):
   description = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  population = models.IntegerField(null=True,blank = True)
+  population = models.IntegerField(null=True,blank = True)  
+  police_address = models.CharField(max_length=60,blank=True,null=True)
   police_contact = models.IntegerField(null=True,blank = True)
+  police_email = models.EmailField(max_length=50,blank=True,null=True)
+  hospital_address = models.CharField(max_length=60,blank=True,null=True)
   hospital_contact = models.IntegerField(null=True,blank = True)
+  hospital_email = models.EmailField(max_length=50,blank=True,null=True)
   image = CloudinaryField('image')
 
   def create_neighborhood(self):
@@ -66,6 +70,7 @@ class Business(models.Model):
   neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business', null=True, blank=True)
   user = models.ForeignKey(User,on_delete=CASCADE)
   email = models.EmailField()
+  phone_number = models.IntegerField(null=True,blank = True)
 
   def create_business(self):
     self.save()

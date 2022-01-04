@@ -57,16 +57,14 @@ class NeighborHood(models.Model):
   
   def __str__(self):
     return self.name
-
-
-""" class Business(models.Model):
+class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()
   image = CloudinaryField('image')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business', null=True, blank=True)
-  #user = models.ForeignKey(User,on_delete=CASCADE)
+  user = models.ForeignKey(User,on_delete=CASCADE)
   email = models.EmailField()
 
   def create_business(self):
@@ -82,6 +80,3 @@ class NeighborHood(models.Model):
   def __str__(self):
     return self.name
 
-
-
- """

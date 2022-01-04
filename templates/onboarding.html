@@ -61,6 +61,26 @@
         </div>
       </div>
   </nav>
+  <!-- Hero section -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mt-4">Welcome to the Most blazing site</h1>            
+            <blockquote> "I know that knowledge and intelligence are not the same thing - but they do live in the same neighborhood. I know once again, firsthand, the joy of learning.
+                -- A. J. Jacobs" </blockquote>
+        </div>
+        <div class="row justify-content-md-center">
+            <a href="{% url 'profile-edit' user.profile.pk %}">
+                <button class="btn btn-outline-dark">Complete Your Profile To Proceed </button>
+
+            </a>
+           
+            
+        </div>
+        
+    </div>        
+</section>   
+<!-- End of Hero Section -->
     {% block body %}
     {% if messages %}
     <div class="row justify-content-center pt-3">

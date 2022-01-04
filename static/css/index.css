@@ -1,0 +1,6 @@
+.hero{
+    height: 80vh;
+    background-image: url("bloghero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

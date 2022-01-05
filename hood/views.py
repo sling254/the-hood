@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from .models import UserProfile, Business, NeighborHood
+from .models import UserProfile, Business, NeighborHood, Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
@@ -16,9 +16,11 @@ from .forms import CreatePostForm
 
 def IndexView(request):
     Businesses = Business.objects.all()
+    Posts = Post.objects.all()
     
     context={
-        "Businesses": Businesses
+        "Businesses": Businesses,
+        "Posts": Posts
     }
     
     return render(request, 'index.html',context)
@@ -66,10 +68,10 @@ def create_post(request, neighborhood_id):
       post.neighborhood = neighborhood
       post.user = request.user
       post.save()
-      return redirect('neighborhood', neighborhood.id)
+      return redirect('index')
   else:
     add_post_form = CreatePostForm()
-  return render(request, 'create_post.html', {'add_post_form': add_post_form,'neighborhood':neighborhood})
+  return render(request, 'create_post.html', {'add_post_form': add_post_form})
 
 
 class BusinessSearch(View):

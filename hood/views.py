@@ -13,7 +13,7 @@ from .forms import CreatePostForm
 
 # Create your views here.
 
-
+@login_required
 def IndexView(request):
     Businesses = Business.objects.all()
     Posts = Post.objects.all()
@@ -24,11 +24,12 @@ def IndexView(request):
     }
     
     return render(request, 'index.html',context)
-
+@login_required
 def OnboardingView(request):
 
     return render(request, 'onboarding.html')
 
+@login_required
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):
         profile = UserProfile.objects.get(pk=pk)
@@ -41,7 +42,7 @@ class ProfileView(View):
 
         return render(request, 'profile.html', context)
 
-
+@login_required
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
     model = UserProfile
     fields = ['neighborhood','email', 'bio', 'birth_date','picture']

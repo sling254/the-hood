@@ -4,23 +4,6 @@
     <div class="row">
         <div class="col-md-4">
             <h1>Business</h1>
-            <div class="card" style="width: 18rem;">              
-              <div class="card-body">
-                <h5 class="card-title">Black Smith</h5>
-                <p class="card-text">The Best Black Smith</p>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Contact Info
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Phone: 0700 123 123</a></li>
-                    <li><a class="dropdown-item" href="#">Email: a@mail.com</a></li>
-                  </ul>
-                </div>
-              </div>
-              <img src="https://source.unsplash.com/random" height="100px" class="card-img-bottom" alt="...">
-            </div>
-            <hr>
             {% for business in Businesses %}
               <div class="card" style="width: 18rem;">              
                 <div class="card-body">
@@ -38,25 +21,12 @@
                 </div>
                 <img src="{{business.image.url}}" height="100px" class="card-img-bottom" alt="...">
               </div>
+              <hr>
 
             {% endfor %}
         </div>
         <div class="col-md-5">
             <h1>Posts</h1>
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="https://random.imagecdn.app/200/200" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">I am the Title</h5>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, labore.</p>
-                        <p class="card-footer"><small class="text-muted">Date updated: 12:00 noon</small></p>                        
-                    </div>
-                  </div>
-              </div>
-            </div>
             {% for Post in Posts %}
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">

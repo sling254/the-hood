@@ -28,19 +28,22 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'create_post' user.profile.neighborhood.pk %}">Post</a>
-            </li>                      
+            
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/admin">Admin</a>
             </li>              
-            <form class="d-flex" action="{% url 'business-search' %}">
-                <input class="form-control me-2" type="search" placeholder="Search Business" aria-label="Search"value="{{ request.GET.query}}" name="query">
-                <button class="btn btn-outline-success" style="border:none; box-shadow:none" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-            </form>
+            
             {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'create_post'%}">Post</a>
+            </li>
+            <form class="d-flex" action="{% url 'business-search' %}">
+              <input class="form-control me-2" type="search" placeholder="Search Business" aria-label="Search"value="{{ request.GET.query}}" name="query">
+              <button class="btn btn-outline-success" style="border:none; box-shadow:none" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ request.user}} <img src="{{ user.profile.picture.url }}" width="35"height="35" alt="" class="rounded-circle">
@@ -69,7 +72,9 @@
           <div class="carousel-caption d-none d-md-block">
               <h1>{{ user.profile.neighborhood.name }}</h1>
               <h5 >{{ user.profile.neighborhood.description}}</h5>
-              <small><p>With a Population of : {{ user.profile.neighborhood.population}}</p></small>
+              {% if user.is_authenticated %}
+                <small><p>With a Population of : {{ user.profile.neighborhood.population}}</p></small>
+              {% endif %}
 
           </div>
         </div>

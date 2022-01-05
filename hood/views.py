@@ -59,13 +59,11 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
         return False
 
 @login_required
-def create_post(request, neighborhood_id):
-  neighborhood = NeighborHood.objects.get(id=neighborhood_id)
+def create_post(request):
   if request.method == 'POST':
     add_post_form = CreatePostForm(request.POST,request.FILES)
     if add_post_form.is_valid():
       post = add_post_form.save(commit=False)
-      post.neighborhood = neighborhood
       post.user = request.user
       post.save()
       return redirect('index')

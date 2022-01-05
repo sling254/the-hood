@@ -69,7 +69,6 @@ class Post(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   user = models.ForeignKey(User,on_delete=CASCADE,related_name='poster')
-  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='neighborhood_post')
 
   def save_post(self):
     self.save()

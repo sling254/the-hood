@@ -4,8 +4,9 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from .models import UserProfile, Business
+from .models import UserProfile, Business, NeighborHood
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
 
@@ -53,6 +54,21 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
         if self.request.user == profile.user:
             return True
         return False
+
+@login_required
+def create_post(request, neighborhood_id):
+  neighborhood = NeighborHood.objects.get(id=neighborhood_id)
+  if request.method == 'POST':
+    add_post_form = CreatePostForm(request.POST,request.FILES)
+    if add_post_form.is_valid():
+      post = add_post_form.save(commit=False)
+      post.neighborhood = neighborhood
+      post.user = request.user
+      post.save()
+      return redirect('neighborhood', neighborhood.id)
+  else:
+    add_post_form = CreatePostForm()
+  return render(request, 'create_post.html', {'add_post_form': add_post_form,'neighborhood':neighborhood})
 
 
 class BusinessSearch(View):

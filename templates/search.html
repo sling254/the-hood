@@ -7,7 +7,7 @@
             <a href="{% url 'index' %}" class="btn btn-light">Back To Feed</a>
         </div>
     </div>
-    {% for business in Businesses %}
+    {% for business in business_list %}
         <div class="card" style="width: 18rem;">              
           <div class="card-body">
             <h5 class="card-title">{{ business.name }}</h5>

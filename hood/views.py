@@ -55,3 +55,14 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
         return False
 
 
+class BusinessSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('query')
+        business_list = Business.search_businesses(query)
+
+        context = {
+            'business_list': business_list,
+        }
+
+        return render(request, 'search.html', context)
+        

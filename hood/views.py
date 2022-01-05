@@ -8,6 +8,7 @@ from .models import UserProfile, Business, NeighborHood
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from .forms import CreatePostForm
 
 
 # Create your views here.

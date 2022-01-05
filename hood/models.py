@@ -61,6 +61,31 @@ class NeighborHood(models.Model):
   
   def __str__(self):
     return self.name
+
+class Post(models.Model):
+  title = models.CharField(max_length=144)
+  post = models.TextField()
+  image = CloudinaryField('image')
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  user = models.ForeignKey(User,on_delete=CASCADE,related_name='poster')
+  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='neighborhood_post')
+
+  def save_post(self):
+    self.save()
+
+  def delete_post(self):
+    self.delete()
+
+  @classmethod
+  def show_posts(cls):
+    posts = cls.objects.all()
+    return posts
+
+  def __str__(self):
+    return self.title
+
+
 class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()

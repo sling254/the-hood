@@ -24,7 +24,7 @@ def IndexView(request):
     }
     
     return render(request, 'index.html',context)
-
+@login_required
 def OnboardingView(request):
 
     return render(request, 'onboarding.html')

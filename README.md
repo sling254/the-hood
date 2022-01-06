@@ -1,7 +1,6 @@
 # the-hood
 ## Description.
-A Django web application that allows users to view information about what is happening in your neighborhood most of the time. Example if an important meeting happens, theft or even death wouldn’t you like to know about it. This web application will allow you to be in the loop about
-everything that is happening in your neighborhood.From contact information of different handyman to meeting announcements or even alerts.
+A Django web application that allows users to view information about what is happening in your neighborhood most of the time. Example if an important meeting happens, theft or even death wouldn’t you like to know about it. This web application will allow you to be in the loop about everything that is happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
 
 ## Check out the website
 
